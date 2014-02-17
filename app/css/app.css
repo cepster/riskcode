@@ -28,3 +28,24 @@
   content: "";
   padding: 0;
 }
+
+.accordion-toggle {
+  cursor:pointer;
+}
+
+.riskHeader {
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:10px;
+  background-color:gray;
+  color:white;
+}
+
+.plural{
+  display:inline;
+}
+
+.subData{
+  font-style:italic;
+  color:gray;
+}

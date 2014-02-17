@@ -1,0 +1,29 @@
+<div>
+	<h2 class="riskHeader">{{title}}</h2>
+	<br/>
+	<!--Search Categories and Risks: <input ng-model="search"/><br/><br/><br/>-->
+	<div ng-show="getSelectedRisks().length > 0">{{getSelectedRisks().length}}&nbsp;risk<p ng-show="getSelectedRisks().length > 1" class="plural">s</p> selected.  <a href="javascript:noop()" ng-click="clearSelected()">Clear</a></div>
+	<accordion>
+		<accordion-group ng-repeat="category in categories | filter:search" heading="{{category.name}}">
+			<accordion>
+				Search Risks: <input type="text" ng-model="searchRisks[category.id]"/><br/><br/>
+				<accordion-group ng-repeat="risk in getRisksByCategory(category.id) | filter:searchRisks[category.id]">
+					<accordion-heading>
+            			<b>{{risk.code}}:</b>&nbsp;{{risk.name}}
+        			</accordion-heading>
+					{{risk.description}}<br/><br/>
+					<input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="risk.selected"/>Patient is at Risk
+					<div ng-show="risk.selected" class="subData">Risk has been selected <a href="#selectedRisks">Show Selected Risks</a></div>
+				</accordion-group>
+			</accordion>
+		</accordion-group>
+	</accordion>
+	<br/><br/><br/>
+	<h2 class="riskHeader" id="selectedRisks" ng-show="getSelectedRisks().length > 0">Selected Risks</h2>
+	<div ng-repeat="risk in getSelectedRisks()">
+		<b>{{risk.code}}</b>&nbsp;<a href="{{risk.url}}" target="_blank">{{risk.name}}</a>
+	</div>
+
+</div>	
+
+
