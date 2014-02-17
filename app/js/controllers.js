@@ -2,10 +2,43 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+var controllers = angular.module('myApp.controllers', []);
 
-  }])
-  .controller('MyCtrl2', [function() {
+controllers.controller('RiskCodes', function($scope, DataService){
+	$scope.title = "Risk Assessment Tool";
 
-  }]);
+	$scope.categories = DataService.getCategories;
+	$scope.risks = DataService.getRisks;
+
+	$scope.searchRisks = {};
+
+	$scope.getRisksByCategory = function(categoryCode){
+		var returnArr = [];
+		angular.forEach($scope.risks, function(risk){
+			if(risk.category == categoryCode){
+				returnArr.push(risk);
+			}
+		});
+
+		return returnArr;
+	};
+
+	$scope.getSelectedRisks = function(){
+		var returnArr = [];
+
+		angular.forEach($scope.risks, function(risk){
+			if(risk.selected === 'true'){
+				returnArr.push(risk);
+			}
+		});
+
+		return returnArr;
+	};
+
+	$scope.clearSelected = function(){
+		angular.forEach($scope.risks, function(risk){
+			risk.selected = 'false';
+		});
+	}
+});
+
