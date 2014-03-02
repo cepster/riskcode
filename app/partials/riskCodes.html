@@ -11,8 +11,40 @@
 					<accordion-heading>
             			<b>{{risk.code}}:</b>&nbsp;{{risk.name}}
         			</accordion-heading>
-					{{risk.description}}<br/><br/>
-					<input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="risk.selected"/>Patient is at Risk
+				    <a href="{{risk.url}}" target="_blank">Criteria</a><br/><br/>
+                    <div ng-show="risk.frequencyCrit !== undefined">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <!--<th style="width:250px;">-->
+                                        <!--Criteria-->
+                                    <!--</th>-->
+                                    <!--<th>-->
+                                        <!--Issuance Frequency-->
+                                    <!--</th>-->
+                                    <th colspan="2">
+                                        Issuance Frequency with INCP
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="freq in risk.frequencyCrit">
+                                    <td style="width:250px;">
+                                        <!--<pre>-->
+                                        {{freq.crit}}
+                                        <!--</pre>-->
+                                    </td>
+                                    <td>
+                                        {{freq.frequency}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="riskCategory" ng-show="risk.riskCat !== undefined">
+                        High Risk Participant Category:&nbsp;<b>{{risk.riskCat}}</b>
+                    </div>
+					<input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="risk.selected"/>&nbsp;Client is at Risk
 					<div ng-show="risk.selected" class="subData">Risk has been selected <a href="#selectedRisks">Show Selected Risks</a></div>
 				</accordion-group>
 			</accordion>
@@ -20,9 +52,10 @@
 	</accordion>
 	<br/><br/><br/>
 	<h2 class="riskHeader" id="selectedRisks" ng-show="getSelectedRisks().length > 0">Selected Risks</h2>
-	<div ng-repeat="risk in getSelectedRisks()">
+	<div ng-repeat="risk in getSelectedRisks()" ng-class="{'highRisk':risk.riskCat !== undefined}">
 		<b>{{risk.code}}</b>&nbsp;<a href="{{risk.url}}" target="_blank">{{risk.name}}</a>
 	</div>
+    <br/><br/>
 
 </div>	
 
