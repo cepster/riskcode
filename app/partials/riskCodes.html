@@ -53,7 +53,7 @@
 	<br/><br/><br/>
 	<h2 class="riskHeader" id="selectedRisks" ng-show="getSelectedRisks().length > 0">Selected Risks</h2>
 	<div ng-repeat="risk in getSelectedRisks()" ng-class="{'highRisk':risk.riskCat !== undefined}">
-		<b>{{risk.code}}</b>&nbsp;<a href="{{risk.url}}" target="_blank">{{risk.name}}</a>
+		<img src="img/remove.png" style="height:30px;width:30px;margin-bottom:3px;" ng-click="removeRisk(risk);"/><b>{{risk.code}}</b>&nbsp;<a href="{{risk.url}}" target="_blank">{{risk.name}}</a>
 	</div>
     <br/><br/>
 

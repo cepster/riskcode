@@ -35,6 +35,10 @@ controllers.controller('RiskCodes', function($scope, DataService){
 		return returnArr;
 	};
 
+    $scope.removeRisk = function(risk){
+        risk.selected = 'false';
+    };
+
 	$scope.clearSelected = function(){
 		angular.forEach($scope.risks, function(risk){
 			risk.selected = 'false';
