@@ -1,5 +1,6 @@
 # RiskCode - A nutritional risk analysis program
 
-## Description
+## How to run
 
-TODO
+Install node.js and make sure it is on your path
+Execute scripts/web-server.js to run a test instance
